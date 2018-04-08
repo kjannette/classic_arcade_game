@@ -100,7 +100,6 @@ Player.prototype.handleInput = function(e) {
       alert("Use right, left, up and down keys to move your player!");
     }
     if (this.y < 0){
-    alert('SCORE!');
     gameScore += 1;
     scoreBoard.innerText = `Score: ${gameScore}`
     this.x= 200;
