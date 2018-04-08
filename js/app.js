@@ -35,7 +35,7 @@ var Player = function(x, y) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
-    this.avatar = 'images/char-boy.png'
+    this.sprite = 'images/char-boy.png'
 };
 
 Player.prototype.update = function(dt) {
@@ -45,27 +45,22 @@ Player.prototype.update = function(dt) {
 };
 
 Player.prototype.render = function() {
-    // code here
-
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 Player.prototype.handleInput = function(e) {
   switch (e) {
     case 'left':
-      console.log('left')
-      this.x = this.x - 10;
+      this.x = this.x - 100;
       break;
     case 'down':
-      console.log('down')
-      this.y = this.y - 10;
+      this.y = this.y + 85;
       break;
     case 'right':
-      console.log('right')
-      this.x = this.x + 10;
+      this.x = this.x + 100;
       break;
     case 'up':
-      console.log('up')
-      this.y = this.y +10;
+      this.y = this.y - 85;
       break;
   }
 };
@@ -78,7 +73,7 @@ var allEnemies = [];
 
 // Place the player object in a variable called player
 
-var player = new Player(250, 400);
+var player = new Player(200, 400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -89,6 +84,6 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-//    console.log(allowedKeys[e.keyCode])
+//    console.log("KEY: " + allowedKeys[e.keyCode])
     player.handleInput(allowedKeys[e.keyCode]);
 });
