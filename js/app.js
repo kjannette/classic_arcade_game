@@ -1,3 +1,4 @@
+const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -20,25 +21,8 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
 
     if (this.x >= 400) {
-      var ranNum= Math.floor(Math.random() * 4) + 1;
-      switch (ranNum) {
-        case 1:
-          this.x = 0;
-          this.y = 315;
-          break;
-        case 2:
-          this.x = 0;
-          this.y = 230;
-          break;
-        case 3:
-          this.x = 0;
-          this.y = 145;
-          break;
-        case 4:
-          this.x = 0;
-          this.y = 60;
-          break
-      }
+      this.x = 0;
+      this.y = POSSIBLE_Y_VALUES[Math.floor(Math.random() * POSSIBLE_Y_VALUES.length)];
     }
 };
 
@@ -111,7 +95,7 @@ Player.prototype.handleInput = function(e) {
     this.x= 200;
     this.y = 400;
   }
-  console.log("X:" + this.x + " Y:" + this.y)
+//  console.log("X:" + this.x + " Y:" + this.y)
 };
 
 
