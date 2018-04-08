@@ -21,7 +21,6 @@ Enemy.prototype.update = function(dt) {
 
     if (this.x >= 400) {
       var ranNum= Math.floor(Math.random() * 4) + 1;
-      console.log(ranNum)
       switch (ranNum) {
         case 1:
           this.x = 0;
@@ -119,11 +118,12 @@ Player.prototype.handleInput = function(e) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-var enemyOne = new Enemy(0, 230, 50);
-//var enemyTwo = new Enemy(0, 230);
-//var enemyThree = new Enemy(0, 230);
+var enemyOne = new Enemy(0, 230, 60);
+var enemyTwo = new Enemy(0, 60, 80);
+var enemyThree = new Enemy(0, 145, 110);
+var enemyFour = new Enemy(0, 145, 40);
 
-var allEnemies = [enemyOne];
+var allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 
 
 
