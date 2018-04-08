@@ -1,6 +1,9 @@
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
 let gameScore = 0;
-let scoreBoard = document.querySelector(".score")
+let lifeCount = 5;
+let scoreBoard = document.querySelector(".score");
+let lifeBoard= document.querySelector(".lives");
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -29,6 +32,11 @@ Enemy.prototype.update = function(dt) {
     if (this.x >= player.x -30 && this.x <= player.x + 30) {
       if (this.y >= player.y -50 && this.y <= player.y +50){
          console.log('Collision');
+         lifeCount -= 1;
+         lifeBoard.innerText = ` Lives: ${lifeCount}`
+         if (lifeCount === 0) {
+           console.log("RESET")
+         }
          player.x = 200;
          player.y = 400;
       }
