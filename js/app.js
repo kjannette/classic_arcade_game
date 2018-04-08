@@ -1,10 +1,14 @@
+
+// Code defines game variables
+
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
 let gameScore = 0;
 let lifeCount = 5;
 let scoreBoard = document.querySelector(".score");
 let lifeBoard= document.querySelector(".lives");
 
-// Enemies our player must avoid
+// Function creaters the enemies that player must avoid
+
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -17,12 +21,10 @@ var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+// Function updates the enemy's position
+
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+
     this.x = this.x + this.speed * dt;
 
     if (this.x >= 400) {
@@ -42,15 +44,14 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
-// Draw the enemy on the screen, required method for game
+// Function renders the enemy characters on the screen
+
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Function creates the player class
 
 var Player = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -63,15 +64,28 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png'
 };
 
+/* Function checks if player has made it to the "water" area, thus scoring
+a point */
+
 Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (this.y < 0){
+    gameScore += 1;
+    scoreBoard.innerText = `Score: ${gameScore}`
+    this.x= 200;
+    this.y = 400;
+  }
 };
+
+// Function renders the player characters on the screen
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+// Function moves the player character on the screen in response to user input
 
 Player.prototype.handleInput = function(e) {
     switch (e) {
@@ -106,18 +120,10 @@ Player.prototype.handleInput = function(e) {
       default:
       alert("Use right, left, up and down keys to move your player!");
     }
-    if (this.y < 0){
-    gameScore += 1;
-    scoreBoard.innerText = `Score: ${gameScore}`
-    this.x= 200;
-    this.y = 400;
-  }
-//  console.log("X:" + this.x + " Y:" + this.y)
 };
 
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
+// Code below instantiates game objects: player and "enemies"
 
 var enemyOne = new Enemy(0, 230, 60);
 var enemyTwo = new Enemy(0, 60, 80);
@@ -126,12 +132,11 @@ var enemyFour = new Enemy(0, 145, 40);
 
 var allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 
-// Place the player object in a variable called player
-
 var player = new Player(200, 400);
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+/* Function listens for key presses and sends the keys to
+Player.handleInput() method. */
+
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
@@ -139,6 +144,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-//    console.log("KEY: " + allowedKeys[e.keyCode])
     player.handleInput(allowedKeys[e.keyCode]);
 });
