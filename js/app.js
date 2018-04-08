@@ -78,8 +78,15 @@ Player.prototype.handleInput = function(e) {
           this.y = this.y - 85;
         }
         break;
+      default:
+      alert("Use right, left, up and down keys to move your player!");
     }
-  console.log("X:" + this.x + " Y:" + this.y)
+    if (this.y < 0){
+    alert('SCORE!');
+    this.x= 200;
+    this.y = 400;
+  }
+//  console.log("X:" + this.x + " Y:" + this.y)
 };
 
 
