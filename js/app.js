@@ -49,20 +49,37 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(e) {
-  switch (e) {
-    case 'left':
-      this.x = this.x - 100;
-      break;
-    case 'down':
-      this.y = this.y + 85;
-      break;
-    case 'right':
-      this.x = this.x + 100;
-      break;
-    case 'up':
-      this.y = this.y - 85;
-      break;
-  }
+    switch (e) {
+      case 'left':
+        if (this.x<= 0) {
+
+        } else {
+          this.x = this.x - 100;
+        }
+        break;
+      case 'down':
+        if (this.y >= 400) {
+
+        } else {
+          this.y = this.y + 85;
+        }
+        break;
+      case 'right':
+        if (this.x >= 400) {
+
+        } else {
+          this.x = this.x + 100;
+        }
+        break;
+      case 'up':
+        if (this.y <= -25) {
+
+        } else {
+          this.y = this.y - 85;
+        }
+        break;
+    }
+  console.log("X:" + this.x + " Y:" + this.y)
 };
 
 
