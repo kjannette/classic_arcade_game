@@ -31,7 +31,6 @@ Enemy.prototype.update = function(dt) {
     }
     if (this.x >= player.x -30 && this.x <= player.x + 30) {
       if (this.y >= player.y -50 && this.y <= player.y +50){
-         console.log('Collision');
          lifeCount -= 1;
          lifeBoard.innerText = ` Lives: ${lifeCount}`
          if (lifeCount === 0) {
@@ -126,8 +125,6 @@ var enemyThree = new Enemy(0, 145, 110);
 var enemyFour = new Enemy(0, 145, 40);
 
 var allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
-
-
 
 // Place the player object in a variable called player
 
