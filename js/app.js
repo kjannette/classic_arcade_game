@@ -1,5 +1,4 @@
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
-let playerBox, enemyBox;
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -11,7 +10,6 @@ var Enemy = function(x, y, speed) {
     this.y = y;
     this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
-    enemyBox = {xCor: this.x, yCor: this.y, width: 50, height: 50};
 };
 
 // Update the enemy's position, required method for game
@@ -26,13 +24,13 @@ Enemy.prototype.update = function(dt) {
       this.x = 0;
       this.y = POSSIBLE_Y_VALUES[Math.floor(Math.random() * POSSIBLE_Y_VALUES.length)];
     }
-    if ((playerBox.xCor < enemyBox.xCor + enemyBox.width) &&
-        (playerBox.xCor + playerBox.width > enemyBox.xCor) &&
-        (playerBox.yCor < enemyBox.yCor + enemyBox.height) &&
-        (playerBox.height + playerBox.yCor > enemyBox.yCor))
-      {
-        console.log("Collision");
+    if (this.x >= player.x -30 && this.x <= player.x + 30) {
+      if (this.y >= player.y -50 && this.y <= player.y +50){
+         console.log('Collision');
+         player.x = 200;
+         player.y = 400;
       }
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -54,7 +52,6 @@ var Player = function(x, y) {
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png'
-    playerBox = {xCor: this.x, yCor: this.y, width: 50, height: 50};
 };
 
 Player.prototype.update = function(dt) {
