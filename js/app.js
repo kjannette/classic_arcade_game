@@ -1,4 +1,5 @@
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
+let gameScore = 0;
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
