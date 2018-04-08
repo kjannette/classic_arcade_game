@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -7,6 +7,7 @@ var Enemy = function(x, y) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
+    this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -16,12 +17,37 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x = this.x + this.speed * dt;
+
+    if (this.x >= 400) {
+      var ranNum= Math.floor(Math.random() * 4) + 1;
+      console.log(ranNum)
+      switch (ranNum) {
+        case 1:
+          this.x = 0;
+          this.y = 315;
+          break;
+        case 2:
+          this.x = 0;
+          this.y = 230;
+          break;
+        case 3:
+          this.x = 0;
+          this.y = 145;
+          break;
+        case 4:
+          this.x = 0;
+          this.y = 60;
+          break
+      }
+    }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -73,7 +99,7 @@ Player.prototype.handleInput = function(e) {
         break;
       case 'up':
         if (this.y <= -25) {
-          console.log("GOOOOAAAAAL")
+
         } else {
           this.y = this.y - 85;
         }
@@ -86,16 +112,20 @@ Player.prototype.handleInput = function(e) {
     this.x= 200;
     this.y = 400;
   }
-//  console.log("X:" + this.x + " Y:" + this.y)
+  console.log("X:" + this.x + " Y:" + this.y)
 };
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-var enemyOne = new Enemy(0, 230);
+var enemyOne = new Enemy(0, 230, 50);
+//var enemyTwo = new Enemy(0, 230);
+//var enemyThree = new Enemy(0, 230);
 
-var allEnemies = [];
+var allEnemies = [enemyOne];
+
+
 
 // Place the player object in a variable called player
 
