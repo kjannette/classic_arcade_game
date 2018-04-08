@@ -73,7 +73,7 @@ Player.prototype.handleInput = function(e) {
         break;
       case 'up':
         if (this.y <= -25) {
-
+          console.log("GOOOOAAAAAL")
         } else {
           this.y = this.y - 85;
         }
