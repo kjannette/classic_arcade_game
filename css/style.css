@@ -9,3 +9,7 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+.title {
+  margin: 10px;
+}
