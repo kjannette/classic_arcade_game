@@ -1,5 +1,6 @@
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
 let gameScore = 0;
+let scoreBoard = document.querySelector(".score")
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -100,6 +101,8 @@ Player.prototype.handleInput = function(e) {
     }
     if (this.y < 0){
     alert('SCORE!');
+    gameScore += 1;
+    scoreBoard.innerText = `Score: ${gameScore}`
     this.x= 200;
     this.y = 400;
   }
