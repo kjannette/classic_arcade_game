@@ -1,5 +1,5 @@
 
-// Code defines game variables
+// Code defines game variables:
 
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
 let gameScore = 0;
@@ -7,14 +7,10 @@ let lifeCount = 5;
 let scoreBoard = document.querySelector(".score");
 let lifeBoard= document.querySelector(".lives");
 
-// Function creaters the enemies that player must avoid
+// Function creates the enemies that player must avoid
 
 var Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -49,7 +45,6 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
 
 // Function creates the player class
 
@@ -121,7 +116,6 @@ Player.prototype.handleInput = function(e) {
       alert("Use right, left, up and down keys to move your player!");
     }
 };
-
 
 // Code below instantiates game objects: player and "enemies"
 
