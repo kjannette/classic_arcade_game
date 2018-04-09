@@ -13,3 +13,7 @@ body {
 .title {
   margin: 10px;
 }
+
+.canvas {
+  margin-top: -50px;
+}
