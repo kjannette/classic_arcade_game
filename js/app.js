@@ -142,27 +142,27 @@ var player = new Player(200, 400);
 
 function fireModalWin() {
   modal.style.display = "block";
-  p1 = document.createElement("p");
-  p2 = document.createElement("p");
-  p1.innerText = `Congratulations! You Won!`
-  p2.innerText = `Click anywhere to play again.`
-  modalText.appendChild(p1);
-  modalText.appendChild(p2);
+  pWin1 = document.createElement("p");
+  pWin2 = document.createElement("p");
+  pWin1.innerText = `Congratulations! You Won!`
+  pWin2.innerText = `Click anywhere to play again.`
+  modalText.appendChild(pWin1);
+  modalText.appendChild(pWin2);
 };
 
 // Function fires modal when called when lives equal 0
 
 function fireModalLose() {
   modal.style.display = "block";
-  p1 = document.createElement("p");
-  p2 = document.createElement("p");
-  p1.innerText = `Sorry. You lost.`
-  p2.innerText = `Click anywhere to play again.`
-  modalText.appendChild(p1);
-  modalText.appendChild(p2);
+  pLose1 = document.createElement("p");
+  pLose2 = document.createElement("p");
+  pLose1.innerText = `Sorry. You lost.`
+  pLose2.innerText = `Click anywhere to play again.`
+  modalText.appendChild(pLose1);
+  modalText.appendChild(pLose2);
 };
 
-// Function resets the game variables for a new game
+// Function resets the game variables to begin a new game
 
 function replay() {
   gameScore = 0;
