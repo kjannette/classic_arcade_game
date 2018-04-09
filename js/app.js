@@ -38,7 +38,7 @@ Enemy.prototype.update = function(dt) {
            if (lifeCount === 0) {
              console.log("RESET")
              gamePlay = false;
-             firemodal();
+             fireModal();
            }
            player.x = 200;
            player.y = 400;
@@ -63,22 +63,22 @@ var Player = function(x, y) {
 };
 
 /* Function checks if player has made it to the "water" area, thus scoring
-a point */
+a point.  Then checks if total score equals 10, threshold for game "win" */
 
 Player.prototype.update = function(dt) {
 
     if (this.y < 0){
-    gameScore += 1;
-    scoreBoard.innerText = `Score: ${gameScore}`
-    this.x= 200;
-    this.y = 400;
+      gameScore += 1;
+      scoreBoard.innerText = `Score: ${gameScore}`
+      this.x= 200;
+      this.y = 400;
+    }
 
     if (gameScore === 10) {
       gamePlay = false;
       fireModal();
     }
 
-  }
 };
 
 // Function renders the player characters on the screen
