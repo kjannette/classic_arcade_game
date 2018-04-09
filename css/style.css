@@ -17,3 +17,15 @@ canvas {
 .title {
   margin: 10px;
 }
+
+.modal {
+  display: none;
+  font-family: 'Coda', cursive;
+  position: fixed;
+  z-index: 1;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  overflow: auto;
+  background-color: #91bcc4;
+}

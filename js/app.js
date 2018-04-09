@@ -1,12 +1,14 @@
 
 // Defines game variables:
 
+const modal = document.querySelector(".modal");
+const modalText = document.querySelector(".modal_text");
 const POSSIBLE_Y_VALUES = [60, 145, 230, 315]
 let gameScore = 0;
 let lifeCount = 5;
 let scoreBoard = document.querySelector(".score");
 let lifeBoard= document.querySelector(".lives");
-let gamePlay = false;
+let gamePlay = true;
 
 // Function creates the enemies that player must avoid
 
@@ -68,6 +70,11 @@ Player.prototype.update = function(dt) {
     scoreBoard.innerText = `Score: ${gameScore}`
     this.x= 200;
     this.y = 400;
+
+    if (gameScore === 10) {
+      gamePlay = false;
+      fireModal();
+    }
   }
 };
 
@@ -128,6 +135,24 @@ var allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 
 var player = new Player(200, 400);
 
+// Function fires modal when called after score reaches 10 or lives equal 0
+
+function fireModal() {
+  modal.style.display = "block";
+  p = document.createElement("p");
+  p.innerText = `Click anywhere to play again.`
+  modalText.appendChild(p);
+};
+
+function replay() {
+  gameScore = 0;
+  lifeCount = 5;
+  player = new Player(200, 400);
+  gamePlay = true;
+}
+
+// Listeners:
+
 /* Function listens for key presses and sends the keys to
 Player.handleInput() method. */
 
@@ -140,3 +165,9 @@ document.addEventListener('keyup', function(e) {
     };
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+modal.addEventListener("click", function(e){
+  e.preventDefault();
+  modal.style.display = "none";
+  replay();
+})
