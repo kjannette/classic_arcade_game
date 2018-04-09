@@ -37,6 +37,8 @@ Enemy.prototype.update = function(dt) {
            lifeBoard.innerText = ` Lives: ${lifeCount}`
            if (lifeCount === 0) {
              console.log("RESET")
+             gamePlay = false;
+             firemodal();
            }
            player.x = 200;
            player.y = 400;
@@ -75,6 +77,7 @@ Player.prototype.update = function(dt) {
       gamePlay = false;
       fireModal();
     }
+
   }
 };
 
@@ -139,10 +142,25 @@ var player = new Player(200, 400);
 
 function fireModal() {
   modal.style.display = "block";
-  p = document.createElement("p");
-  p.innerText = `Click anywhere to play again.`
-  modalText.appendChild(p);
+
+  if (gameScore === 10) {
+    p1 = document.createElement("p");
+    p2 = document.createElement("p");
+    p1.innerText = `Congratulations! You Won!`
+    p2.innerText = `Click anywhere to play again.`
+    modalText.appendChild(p1);
+    modalText.appendChild(p2);
+  } else if (lifeCount === 0) {
+    p1 = document.createElement("p");
+    p2 = document.createElement("p");
+    p1.innerText = `Sorry. You lost.`
+    p2.innerText = `Click anywhere to play again.`
+    modalText.appendChild(p1);
+    modalText.appendChild(p2);
+  }
 };
+
+// Function resets the game variables for a new game
 
 function replay() {
   gameScore = 0;
