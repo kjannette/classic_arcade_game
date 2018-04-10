@@ -37,7 +37,7 @@ Enemy.prototype.update = function(dt) {
            lifeBoard.innerText = ` Lives: ${lifeCount}`
            if (lifeCount === 0) {
              gamePlay = false;
-             fireModalLose();
+             fireModal();
            }
            player.x = 200;
            player.y = 400;
@@ -118,7 +118,7 @@ Player.prototype.handleInput = function(e) {
         this.y = 400;
         if (gameScore === 10) {
           gamePlay = false;
-          fireModalWin();
+          fireModal();
         }
       }
     }
@@ -135,38 +135,39 @@ var allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 
 var player = new Player(200, 400);
 
-// Function fires modal when called after score reaches 10
+// Function fires modal when called after score reaches 10/lives reach 0
 
-function fireModalWin() {
-  modal.style.display = "block";
-  p1 = document.createElement("p");
-  p2 = document.createElement("p");
-  p1.innerText = `Congratulations! You won.`
-  p2.innerText = `Click anywhere to play again.`
-  modalText.appendChild(p1);
-  modalText.appendChild(p2);
-};
+function fireModal() {
 
-// Function fires modal when called when lives equal 0
-
-function fireModalLose() {
-  modal.style.display = "block";
-  p1 = document.createElement("p");
-  p2 = document.createElement("p");
-  p1.innerText = `Sorry. You lost.`
-  p2.innerText = `Click anywhere to play again.`
-  modalText.appendChild(p1);
-  modalText.appendChild(p2);
+  if (gameScore === 10) {
+    modal.style.display = "block";
+    p1 = document.createElement("p");
+    p2 = document.createElement("p");
+    p1.innerText = `Congratulations! You won.`
+    p2.innerText = `Click anywhere to play again.`
+    modalText.appendChild(p1);
+    modalText.appendChild(p2);
+  } else if (lifeCount === 0) {
+    modal.style.display = "block";
+    p1 = document.createElement("p");
+    p2 = document.createElement("p");
+    p1.innerText = `Sorry. You lost.`
+    p2.innerText = `Click anywhere to play again.`
+    modalText.appendChild(p1);
+    modalText.appendChild(p2);
+  }
 };
 
 // Function resets the game variables to begin a new game
 
 function replay() {
+  modalText.removeChild(p1);
+  modalText.removeChild(p2);
+  gamePlay = true;
+  player = new Player(200, 400);
   gameScore = 0;
   lifeCount = 5;
-  player = new Player(200, 400);
-  gamePlay = true;
-}
+};
 
 // Listeners:
 
