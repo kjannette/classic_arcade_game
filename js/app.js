@@ -36,7 +36,6 @@ Enemy.prototype.update = function(dt) {
            lifeCount -= 1;
            lifeBoard.innerText = ` Lives: ${lifeCount}`
            if (lifeCount === 0) {
-             console.log("RESET")
              gamePlay = false;
              fireModalLose();
            }
@@ -66,18 +65,6 @@ var Player = function(x, y) {
 a point.  Then checks if total score equals 10, threshold for game "win" */
 
 Player.prototype.update = function(dt) {
-
-    if (this.y < 0){
-      gameScore += 1;
-      scoreBoard.innerText = `Score: ${gameScore}`
-      this.x= 200;
-      this.y = 400;
-    }
-
-    if (gameScore === 10) {
-      gamePlay = false;
-      fireModalWin();
-    }
 
 };
 
@@ -124,6 +111,16 @@ Player.prototype.handleInput = function(e) {
         default:
         alert("Use right, left, up and down keys to move your player!");
       }
+      if (this.y < 0){
+        gameScore += 1;
+        scoreBoard.innerText = `Score: ${gameScore}`
+        this.x= 200;
+        this.y = 400;
+        if (gameScore === 10) {
+          gamePlay = false;
+          fireModalWin();
+        }
+      }
     }
 };
 
@@ -142,24 +139,24 @@ var player = new Player(200, 400);
 
 function fireModalWin() {
   modal.style.display = "block";
-  pWin1 = document.createElement("p");
-  pWin2 = document.createElement("p");
-  pWin1.innerText = `Congratulations! You Won!`
-  pWin2.innerText = `Click anywhere to play again.`
-  modalText.appendChild(pWin1);
-  modalText.appendChild(pWin2);
+  p1 = document.createElement("p");
+  p2 = document.createElement("p");
+  p1.innerText = `Congratulations! You won.`
+  p2.innerText = `Click anywhere to play again.`
+  modalText.appendChild(p1);
+  modalText.appendChild(p2);
 };
 
 // Function fires modal when called when lives equal 0
 
 function fireModalLose() {
   modal.style.display = "block";
-  pLose1 = document.createElement("p");
-  pLose2 = document.createElement("p");
-  pLose1.innerText = `Sorry. You lost.`
-  pLose2.innerText = `Click anywhere to play again.`
-  modalText.appendChild(pLose1);
-  modalText.appendChild(pLose2);
+  p1 = document.createElement("p");
+  p2 = document.createElement("p");
+  p1.innerText = `Sorry. You lost.`
+  p2.innerText = `Click anywhere to play again.`
+  modalText.appendChild(p1);
+  modalText.appendChild(p2);
 };
 
 // Function resets the game variables to begin a new game
