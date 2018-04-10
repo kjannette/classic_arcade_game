@@ -61,8 +61,7 @@ var Player = function(x, y) {
       this.sprite = 'images/char-boy.png'
 };
 
-/* Function checks if player has made it to the "water" area, thus scoring
-a point.  Then checks if total score equals 10, threshold for game "win" */
+/* Function updates player image/position with frame refresh */
 
 Player.prototype.update = function(dt) {
 
@@ -164,12 +163,12 @@ function replay() {
   modalText.removeChild(p1);
   modalText.removeChild(p2);
   gamePlay = true;
-  player = new Player(200, 400);
   gameScore = 0;
+  scoreBoard.innerText = `Score: ${gameScore}`
   lifeCount = 5;
+  lifeBoard.innerText = ` Lives: ${lifeCount}`
+  player = new Player(200, 400);
 };
-
-// Listeners:
 
 /* Function listens for key presses and sends the keys to
 Player.handleInput() method. */
